@@ -7,12 +7,12 @@ apiKeyFile = "../apikey.txt"
 apiSecretFile = "../apisecret.txt"
 
 f = open(apiKeyFile, encoding='ASCII')
-apikey = f.read()
+apikey = f.read().replace('\n','')
 f.close()
 print (apikey)
 
 f = open(apiSecretFile, encoding='ASCII')
-apisecret = f.read()
+apisecret = f.read().replace('\n','')
 f.close()
 print (apisecret)
 
