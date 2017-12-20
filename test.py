@@ -1,21 +1,27 @@
 #!/usr/bin/env python
 # coding: UTF-8
 
+import sys
+import configparser
 from bittrex.bittrex import API_V2_0, Bittrex
 
+confFile = "../apikey.txt"
 apiKeyFile = "../apikey.txt"
 apiSecretFile = "../apisecret.txt"
 
-f = open(apiKeyFile, encoding='ASCII')
-apikey = f.read().replace('\n','')
-f.close()
-print (apikey)
+config = configparser.ConfigParser()
 
-f = open(apiSecretFile, encoding='ASCII')
-apisecret = f.read().replace('\n','')
-f.close()
-print (apisecret)
+try:
+   config.read(confFile)
+   apikey = config['bittrex']['apikey']
+   apisecret = config['bittrex']['apisecret']
 
+except:
+   print('Error occured')
+   exit()
+
+print('API Key is ', apikey)
+print('API Secret is ', apisecret)
 
 my_Bittrex = Bittrex(apikey, apisecret, api_version=API_V2_0)
 #print (my_Bittrex.get_balances())
